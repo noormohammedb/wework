@@ -50,7 +50,7 @@ Migrations.add({
 
 Migrations.add({
   version: 3,
-  name: 'Adds randomSorter for all developers',
+  name: 'Adds randomSorter for all profiles',
   up: function() {
     Profiles.find({}).forEach(function(profile) {
       Profiles.update({

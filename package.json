@@ -1,7 +1,7 @@
 {
-  "name": "wework",
+  "name": "jo-bs.com",
   "version": "1.0.0",
-  "description": "We Work Meteor, a job board and developer directory for Meteor specific work https://www.weworkmeteor.com",
+  "description": "jo-bs - Engineering Jobs Electronics, Electrical, Instrumentation, Mechanical",
   "main": "",
   "engines": {
     "node": "= 8.11.4",

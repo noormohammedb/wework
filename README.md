@@ -1,6 +1,9 @@
-## We Work Meteor
-https://www.weworkmeteor.com/
+## jo-bs.com
+https://www.jo-bs.com/
 # Meteor Job Board and Developer Directory
+
+#Unmaintained
+#Credits TO https://github.com/nate-strauser/wework 
 
 If you have a project or problem you need help with, you can post a job or contact a developer.
 
