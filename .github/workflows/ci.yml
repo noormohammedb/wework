@@ -18,9 +18,9 @@ jobs:
         node: ["8.11"]
     name: Meteor ${{ matrix.meteor }}
     steps:
-      - env:
-          SUPER_SECRET: ${{ secrets.SuperSecret }}
       - run: echo ${{ secrets.TEST }}
+        env:
+          SUPER_SECRET: ${{ secrets.SuperSecret }}
       # - uses: actions/checkout@v1
       # - name: Setup meteor
       #   uses: meteorengineer/setup-meteor@v1
