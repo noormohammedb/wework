@@ -22,7 +22,7 @@ jobs:
     steps:
       - run: echo $SECRET
       - run: echo "change" > file
-      - run: sed -ie 's/change/${{ secrets.NEW_TEST }}/g' Dockerfile
+      - run: sed -ie 's/change/${{ secrets.NEW_TEST }}/g' file
       - run: cat file
       # - uses: actions/checkout@v1
       # - name: Setup meteor
