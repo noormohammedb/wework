@@ -5,21 +5,25 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ pipeline ]
+    branches: [pipeline]
   pull_request:
-    branches: [ pipeline ]
+    branches: [pipeline]
 
 jobs:
   build:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        meteor: [ '1.8.0' ]
+        meteor: ["1.8.0"]
+        node: ["8.11"]
     name: Meteor ${{ matrix.meteor }}
     steps:
       - uses: actions/checkout@v1
       - name: Setup meteor
         uses: meteorengineer/setup-meteor@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - run: node --version
       - run: npm --version
       - run: meteor npm install
