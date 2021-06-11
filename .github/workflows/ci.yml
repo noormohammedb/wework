@@ -20,7 +20,9 @@ jobs:
         node: ["8.11"]
     name: Meteor ${{ matrix.meteor }}
     steps:
-      - run: echo $SECRET > file
+      - run: echo $SECRET
+      - run: echo "change" > file
+      - run: sed -ie 's/change/${{ secrets.NEW_TEST }}/g' Dockerfile
       - run: cat file
       # - uses: actions/checkout@v1
       # - name: Setup meteor
