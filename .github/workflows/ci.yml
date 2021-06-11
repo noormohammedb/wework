@@ -21,7 +21,7 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - run: echo "$SECRET"
-      - run: echo "$CONTAINER_NAME"
+      - run: echo $CONTAINER_NAME
       # - uses: actions/checkout@v1
       # - name: Setup meteor
       #   uses: meteorengineer/setup-meteor@v1
