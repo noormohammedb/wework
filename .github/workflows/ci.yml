@@ -26,6 +26,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: node --version
       - run: npm --version
+      - run: meteor --version
       - run: meteor npm install
       - run: meteror build --directory ./
       - run: cd bundle
