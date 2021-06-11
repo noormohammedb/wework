@@ -22,6 +22,7 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.TEST }}
         run: echo "$SUPER_SECRET"
+      - run: echo $env
         # - uses: actions/checkout@v1
         # - name: Setup meteor
         #   uses: meteorengineer/setup-meteor@v1
