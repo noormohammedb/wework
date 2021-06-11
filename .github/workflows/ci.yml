@@ -13,7 +13,7 @@ jobs:
   build:
     env:
       SECRET: ${{ secrets.NEW_TEST }}
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         meteor: ["1.8.0"]
