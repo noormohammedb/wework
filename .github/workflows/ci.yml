@@ -20,8 +20,10 @@ jobs:
         node: ["8.11"]
     name: Meteor ${{ matrix.meteor }}
     steps:
-      - run: echo "$SECRET"
+      - run: echo "$TEST"
+      - run: echo "$credentials.TEST"
       - run: echo $CONTAINER_NAME
+      - run: echo $credentials.CONTAINER_NAME
       # - uses: actions/checkout@v1
       # - name: Setup meteor
       #   uses: meteorengineer/setup-meteor@v1
