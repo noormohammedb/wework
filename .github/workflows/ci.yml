@@ -19,9 +19,9 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - name: check env
-        run: echo $SUPER_SECRET
         env:
           SUPER_SECRET: ${{ secrets.TEST }}
+        run: echo $SUPER_SECRET
         # - uses: actions/checkout@v1
         # - name: Setup meteor
         #   uses: meteorengineer/setup-meteor@v1
