@@ -20,7 +20,8 @@ jobs:
         node: ["8.11"]
     name: Meteor ${{ matrix.meteor }}
     steps:
-      - run: echo $SECRET
+      - run: echo $SECRET > file
+      - run: cat file
       # - uses: actions/checkout@v1
       # - name: Setup meteor
       #   uses: meteorengineer/setup-meteor@v1
