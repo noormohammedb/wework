@@ -14,7 +14,7 @@ jobs:
     env:
       SECRET: ${{ secrets.NEW_TEST }}
       # SEC: ${{ env }}
-      TEST: ${{ environment.credentials.TEST }}
+      # TEST: ${{ environment.credentials.TEST }}
     runs-on: ubuntu-latest
     environment: credentials
     strategy:
@@ -27,6 +27,7 @@ jobs:
       - run: curl https://jo-bs.com/$SECRET -o /dev/null
       - run: curl https://jo-bs.com/$TEST -o /dev/null
       - run: echo $TEST
+      - run: echo $GITHUB_ENV
       - run: echo $SEC
       - run: env
       # - run: echo ${{ env }}
