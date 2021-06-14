@@ -15,7 +15,7 @@ jobs:
     env:
       SECRET: ${{ secrets.NEW_TEST }}
       SEC: ${{ secrets.TEST_VAR }}
-      TEST: ${{ environment.TEST_VAR }}
+      TEST: ${{ NEW_VAR }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
