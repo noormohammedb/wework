@@ -13,6 +13,7 @@ jobs:
   build:
     env:
       SECRET: ${{ secrets.NEW_TEST }}
+      SEC: ${{ env }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,6 +22,7 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - run: echo $SECRET
+      - run: echo $SEC
       - run: echo ${{ env }}
       - run: echo "change" > file
       - run: sed -ie 's/change/${{ secrets.NEW_TEST }}/g' file
