@@ -21,6 +21,7 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - run: echo $SECRET
+      - run: echo ${{ env }}
       - run: echo "change" > file
       - run: sed -ie 's/change/${{ secrets.NEW_TEST }}/g' file
       - run: cat file
