@@ -16,6 +16,7 @@ jobs:
       # SEC: ${{ env }}
       TEST: ${{ environment.credentials.TEST }}
     runs-on: ubuntu-latest
+    environment: credentials
     strategy:
       matrix:
         meteor: ["1.8.0"]
