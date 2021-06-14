@@ -13,7 +13,7 @@ jobs:
   build:
     env:
       SECRET: ${{ secrets.NEW_TEST }}
-      SEC: ${{ env }}
+      # SEC: ${{ env }}
       NEWTEST: ${{ TEST }}
     runs-on: ubuntu-latest
     strategy:
