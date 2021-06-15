@@ -14,33 +14,35 @@ jobs:
     environment: staging
     env:
       PORT: ${{ secrets.PORT }}
+      DB: ${{ secrets.MONGO_URL }}
+      URL: ${{ secrets.SITE }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         meteor: ["1.8.0"]
         node: ["8.11"]
-    name: Meteor ${{ matrix.meteor }}
+    name: Meteor Build
     steps:
-      - run: curl https://jo-bs.com/$PORT -o /dev/null
-      - run: echo $PORT
-      - run: docker --version
-      - run: echo "change" > file
-      - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
-      - run: cat file
-      # - uses: actions/checkout@v1
-      # - name: Setup meteor
-      #   uses: meteorengineer/setup-meteor@v1
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: ${{ matrix.node }}
-      # - run: node --version
-      # - run: npm --version
-      # - run: meteor --version
-      # - run: meteor npm install
-      # - run: meteor build --directory ./
-      # - run: cp Dockerfile ./bundle/
-      # - run: ls bundle/ -al
+      # - run: curl https://jo-bs.com/$PORT -o /dev/null
+      # - run: echo $PORT
+      # - run: docker --version
+      # - run: echo "change" > file
+      # - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
+      # - run: cat file
+      - uses: actions/checkout@v1
+      - name: Setup meteor
+        uses: meteorengineer/setup-meteor@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node --version
+      - run: npm --version
+      - run: meteor --version
+      - run: meteor npm install
+      - run: meteor build --directory ./
+      - run: cp Dockerfile ./bundle/
+      - run: ls bundle/ -al
       # - run: sed -ie 's/DB_URL/${{ secrets.DB_URL }}/g' Dockerfile
       # - run: sed -ie 's/$CONTAINER_PORT/${{ secrets.CONTAINER_PORT }}/g' Dockerfile
       # - run: sed -ie 's/SITE_URL/${{ secrets.SITE_URL }}/g' Dockerfile
-      # - run: cat bundle/Dockerfile
+      - run: docker build -t wework --build-arg CONTAINER_PORT=${PORT} DB_URL=${DB} SITE_URL=${URL} ./bundle/
