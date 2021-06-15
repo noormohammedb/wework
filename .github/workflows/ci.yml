@@ -77,4 +77,5 @@ jobs:
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_SSH_KEY }}
           port: ${{ secrets.HOST_SSH_PORT }}
+          debug: true
           script: hostnamectl
