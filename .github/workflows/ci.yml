@@ -73,7 +73,7 @@ jobs:
       - name: deploying docker container by sshing to VM
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_IP }}
-          username: ${{ secrets.HOST_USER }}
-          key: ${{ secrets.HOST_SSH_KEY }}
-          port: ${{ secrets.HOST_SSH_PORT }}
+          HOST: ${{ secrets.HOST_IP }}
+          USERNAME: ${{ secrets.HOST_USER }}
+          KEY: ${{ secrets.HOST_SSH_KEY }}
+          PORT: ${{ secrets.HOST_SSH_PORT }}
