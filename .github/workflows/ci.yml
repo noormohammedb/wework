@@ -23,12 +23,12 @@ jobs:
         node: ["8.11"]
     name: Meteor Build
     steps:
-      # # - run: curl https://jo-bs.com/$PORT -o /dev/null
-      # # - run: echo $PORT
-      # # - run: docker --version
-      # # - run: echo "change" > file
-      # # - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
-      # # - run: cat file
+      # - run: curl https://jo-bs.com/$PORT -o /dev/null
+      # - run: echo $PORT
+      # - run: docker --version
+      # - run: echo "change" > file
+      # - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
+      # - run: cat file
       # - uses: actions/checkout@v1
       # - name: Setup meteor
       #   uses: meteorengineer/setup-meteor@v1
