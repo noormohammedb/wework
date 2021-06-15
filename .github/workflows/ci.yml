@@ -23,53 +23,53 @@ jobs:
         node: ["8.11"]
     name: Meteor Build
     steps:
-      # - run: curl https://jo-bs.com/$PORT -o /dev/null
-      # - run: echo $PORT
-      # - run: docker --version
-      # - run: echo "change" > file
-      # - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
-      # - run: cat file
-      - uses: actions/checkout@v1
-      - name: Setup meteor
-        uses: meteorengineer/setup-meteor@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - run: node --version
-      - run: npm --version
-      - run: meteor --version
-      - run: meteor npm install
-      - name: Build App
-        run: meteor build --directory ./
-      - run: cp Dockerfile ./bundle/
-      - run: ls bundle/ -al
-      # - run: sed -ie 's/DB_URL/${{ secrets.DB_URL }}/g' Dockerfile
-      # - run: sed -ie 's/$CONTAINER_PORT/${{ secrets.CONTAINER_PORT }}/g' Dockerfile
-      # - run: sed -ie 's/SITE_URL/${{ secrets.SITE_URL }}/g' Dockerfile
-      # - name: Log in to GitHub Docker Registry
-      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-      - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v1
-        with:
-          registry: docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Build container image
-      #   uses: docker/build-push-action@v2
+      # # - run: curl https://jo-bs.com/$PORT -o /dev/null
+      # # - run: echo $PORT
+      # # - run: docker --version
+      # # - run: echo "change" > file
+      # # - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
+      # # - run: cat file
+      # - uses: actions/checkout@v1
+      # - name: Setup meteor
+      #   uses: meteorengineer/setup-meteor@v1
+      # - uses: actions/setup-node@v1
       #   with:
-      #     context: ./bundle/
-      #     build-args:
-      #       CONTAINER_PORT: PORT
-      #     push: true
-      #     tags: |
-      #       docker.pkg.github.com/${{ github.repository }}:${{ github.sha }}
-      - name: Building Docker Image
-        run: docker build -t ${{ github.repository }} -t ${{ github.sha }} --build-arg CONTAINER_PORT=${PORT} --build-arg DB_URL=${DB} --build-arg SITE_URL=${URL} ./bundle/
-      - run: docker images
-      - name: tagging the image
-        run: docker tag ${{ github.repository }} docker.pkg.github.com/${{ github.repository }}/wework_meteor
-      - name: Publish Docker Container Image
-        run: docker push docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest
+      #     node-version: ${{ matrix.node }}
+      # - run: node --version
+      # - run: npm --version
+      # - run: meteor --version
+      # - run: meteor npm install
+      # - name: Build App
+      #   run: meteor build --directory ./
+      # - run: cp Dockerfile ./bundle/
+      # - run: ls bundle/ -al
+      # # - run: sed -ie 's/DB_URL/${{ secrets.DB_URL }}/g' Dockerfile
+      # # - run: sed -ie 's/$CONTAINER_PORT/${{ secrets.CONTAINER_PORT }}/g' Dockerfile
+      # # - run: sed -ie 's/SITE_URL/${{ secrets.SITE_URL }}/g' Dockerfile
+      # # - name: Log in to GitHub Docker Registry
+      # #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      # - name: Log in to GitHub Docker Registry
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: docker.pkg.github.com
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
+      # # - name: Build container image
+      # #   uses: docker/build-push-action@v2
+      # #   with:
+      # #     context: ./bundle/
+      # #     build-args:
+      # #       CONTAINER_PORT: PORT
+      # #     push: true
+      # #     tags: |
+      # #       docker.pkg.github.com/${{ github.repository }}:${{ github.sha }}
+      # - name: Building Docker Image
+      #   run: docker build -t ${{ github.repository }} -t ${{ github.sha }} --build-arg CONTAINER_PORT=${PORT} --build-arg DB_URL=${DB} --build-arg SITE_URL=${URL} ./bundle/
+      # - run: docker images
+      # - name: tagging the image
+      #   run: docker tag ${{ github.repository }} docker.pkg.github.com/${{ github.repository }}/wework_meteor
+      # - name: Publish Docker Container Image
+      #   run: docker push docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest
       - name: deploying docker container by sshing to VM
         uses: appleboy/ssh-action@master
         with:
