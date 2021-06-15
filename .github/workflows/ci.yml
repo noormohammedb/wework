@@ -23,7 +23,7 @@ jobs:
     steps:
       - run: curl https://jo-bs.com/$PORT -o /dev/null
       - run: echo $PORT
-      - run: env
+      - run: docker --version
       - run: echo "change" > file
       - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
       - run: cat file
