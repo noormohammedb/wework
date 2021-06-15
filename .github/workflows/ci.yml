@@ -46,3 +46,5 @@ jobs:
       # - run: sed -ie 's/$CONTAINER_PORT/${{ secrets.CONTAINER_PORT }}/g' Dockerfile
       # - run: sed -ie 's/SITE_URL/${{ secrets.SITE_URL }}/g' Dockerfile
       - run: docker build -t wework --build-arg CONTAINER_PORT=${PORT} --build-arg DB_URL=${DB} --build-arg SITE_URL=${URL} ./bundle/
+      - run: docker run -d --restart=always -p $PORT:$PORT --name is_working wework:latest
+      - run: curl localhost:$PORT -vv
