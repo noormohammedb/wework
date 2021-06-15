@@ -70,3 +70,15 @@ jobs:
         run: docker tag ${{ github.repository }} docker.pkg.github.com/${{ github.repository }}/wework_meteor
       - name: Publish Docker Container Image
         run: docker push docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest
+      - name: deploying docker container by sshing to VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.HOST_USER }}
+          key: ${{ secrets.HOST_SSH_KEY }}
+          port: ${{ secrets.HOST_SSH_PORT }}
+          script: |
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+            docker pull docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest
+            docker stop  ${{ github.repository }}/wework_meteor
+            docker run -d --restart=always -p $PORT:$PORT --name wework_github_pkg  ${{ github.repository }}/wework_meteor:latest
