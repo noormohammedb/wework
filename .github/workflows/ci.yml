@@ -49,3 +49,4 @@ jobs:
       - run: docker run -d --restart=always -p $PORT:$PORT --name is_working wework:latest
       - run: docker ps -a
       - run: curl localhost:$PORT -vv
+      - run: curl localhost:$PORT -vv
