@@ -77,3 +77,4 @@ jobs:
           USERNAME: ${{ secrets.HOST_USER }}
           KEY: ${{ secrets.HOST_SSH_KEY }}
           PORT: ${{ secrets.HOST_SSH_PORT }}
+  # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
