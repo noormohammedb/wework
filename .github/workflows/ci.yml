@@ -54,6 +54,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Building Docker Image
         run: docker build -t ${{ github.sha }} --build-arg CONTAINER_PORT=${PORT} --build-arg DB_URL=${DB} --build-arg SITE_URL=${URL} ./bundle/
-      - run: dokcker images
+      - run: docker images
       - name: Publish Docker Container Image
         run: docker push ${{ github.sha }}
