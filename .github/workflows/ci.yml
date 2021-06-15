@@ -50,7 +50,9 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Building Docker Image
-        run: docker build -t ${{ github.ref }} --build-arg CONTAINER_PORT=${PORT} --build-arg DB_URL=${DB} --build-arg SITE_URL=${URL} ./bundle/
+        run: docker build -t ${{ github.repository }} -t ${{ github.sha }} --build-arg CONTAINER_PORT=${PORT} --build-arg DB_URL=${DB} --build-arg SITE_URL=${URL} ./bundle/
       - run: docker images
+      - name: tagging the image
+        run: docker tag ${{ github.repository }} docker.pkg.github.com/${{ github.repository }}
       - name: Publish Docker Container Image
         run: docker push docker.pkg.github.com/${{ github.repository }}:latest
