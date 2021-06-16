@@ -25,6 +25,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      - run: node --version
+      - run: npm --version
+      - run: meteor --version
       - run: meteor npm install
       - name: Build App
         run: meteor build --directory ./
