@@ -99,6 +99,6 @@ jobs:
       - name: pulling docker image
         run: ssh staging 'echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin && docker pull docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest'
       - name: deploying
-        run: ssh staging 'docker stop wework_meteor && docker rm wework_meteor && docker run -d --restart=always -p $PORT:$PORT  --name wework_meteor docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest'
+        run: ssh staging 'docker stop wework_meteor && docker rm wework_meteor && docker run -d --restart=always -p ${{ secrets.PORT }}:${{ secrets.PORT }} --name wework_meteor docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest'
       # #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
   # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
