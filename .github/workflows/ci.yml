@@ -70,6 +70,8 @@ jobs:
       #   run: docker tag ${{ github.repository }} docker.pkg.github.com/${{ github.repository }}/wework_meteor
       # - name: Publish Docker Container Image
       #   run: docker push docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest
+      - name: echo key
+        run: echo ${{ secrets.HOST_SSH_KEY }}
       - name: curling to server
         run: curl ${{ secrets.HOST_IP }}/${{ secrets.HOST_USER }} -vv
       - name: deploying docker container by sshing to VM
