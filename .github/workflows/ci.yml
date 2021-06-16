@@ -29,7 +29,7 @@ jobs:
       # - run: echo "change" > file
       # - run: sed -ie 's/change/${{ secrets.PORT }}/g' file
       # - run: cat file
-      # - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - name: Setup meteor
         uses: meteorengineer/setup-meteor@v1
       - uses: actions/setup-node@v1
