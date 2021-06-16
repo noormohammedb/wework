@@ -80,5 +80,6 @@ jobs:
           host: ${{ secrets.HOST_IP }}
           username: ${{ secrets.HOST_USER }}
           key: ${{ secrets.HOST_SSH_KEY }}
+          port: ${{ secrets.HOST_SSH_PORT }}
           script: hostnamectl
   # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
