@@ -74,12 +74,30 @@ jobs:
         run: echo `${{ secrets.HOST_SSH_KEY }}`
       - name: curling to server
         run: curl ${{ secrets.HOST_IP }}/${{ secrets.HOST_USER }} -vv
-      - name: deploying docker container by sshing to VM
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_IP }}
-          username: ${{ secrets.HOST_USER }}
-          key: ${{ secrets.HOST_SSH_KEY }}
-          port: ${{ secrets.HOST_SSH_PORT }}
-          script: hostnamectl
+      # - name: deploying docker container by sshing to VM
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST_IP }}
+      #     username: ${{ secrets.HOST_USER }}
+      #     key: ${{ secrets.HOST_SSH_KEY }}
+      #     port: ${{ secrets.HOST_SSH_PORT }}
+      #     script: hostnamectl
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.HOST_USER }}
+          SSH_KEY: ${{ secrets.HOST_SSH_KEY }}
+          SSH_HOST: ${{ secrets.HOST_IP }}
+      - name: test sshing
+        run: ssh staging 'hostnamectl'
   # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
