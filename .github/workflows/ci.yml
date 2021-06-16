@@ -99,5 +99,6 @@ jobs:
           SSH_KEY: ${{ secrets.HOST_SSH_KEY }}
           SSH_HOST: ${{ secrets.HOST_IP }}
       - name: test sshing
-        run: ssh staging 'hostnamectl'
+        run: ssh staging 'echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin && docker pull docker.pkg.github.com/${{ github.repository }}/wework_meteor:latest'
+      # #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
   # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
